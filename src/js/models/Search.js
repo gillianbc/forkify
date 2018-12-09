@@ -13,7 +13,9 @@ const proxy2 = 'https://cors-anywhere.herokuapp.com/'
 export default class Search {
     constructor(query){
         this.query = query;
+        this.recipes = {}
     }
+    
     async getResults(query){
         console.log('In getResults');
         const key = '12bf391898481abb485f712e63a2f4a0';
