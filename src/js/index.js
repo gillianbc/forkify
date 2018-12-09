@@ -29,7 +29,7 @@ const controlSearch = async () => {
 
     //5.  Render results on UI
     state.search.showRecipes();
-    renderResults(state.search.recipes);
+    if (state.search.recipes) renderResults(state.search.recipes);
 
 }
 elements.searchForm.addEventListener('submit',e => {

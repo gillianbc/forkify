@@ -13,7 +13,6 @@ const proxy2 = 'https://cors-anywhere.herokuapp.com/'
 export default class Search {
     constructor(query){
         this.query = query;
-        this.recipes = {}
     }
     
     async getResults(query){
@@ -22,10 +21,14 @@ export default class Search {
         const url = 'https://www.food2fork.com/api/search';
         try {
             const res = await axios(`${url}?key=${key}&q=${this.query}`);
-            console.log(res);
-            this.recipes = res.data.recipes;
+            // console.log(res.data);
+            if (!res.data.recipes) {
+                alert('No recipes.  Error returned from food2fork: ' + res.data['error']);
+            } else {
+                this.recipes = res.data.recipes;
+            }
         } catch (error) {
-            console.log('Error fetching recipses ' + error);
+            console.log('Error fetching recipes ' + error);
         }
         
     }
