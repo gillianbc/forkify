@@ -1,5 +1,5 @@
 import Search from './models/Search';
-import { elements } from './views/base';
+import { elements, renderLoader, clearLoader } from './views/base';
 import { getInput, renderResults, clearInput, clearResults } from './views/searchView';
 const search = new Search('cheese');
 /**
@@ -23,12 +23,13 @@ const controlSearch = async () => {
     //3.  Prepare the UI
     clearInput();
     clearResults();
+    renderLoader(elements.searchResults);
 
     //4.  Do the search
     await state.search.getResults(query);
 
     //5.  Render results on UI
-    state.search.showRecipes();
+    clearLoader();
     if (state.search.recipes) renderResults(state.search.recipes);
 
 }
